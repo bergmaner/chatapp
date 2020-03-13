@@ -6,15 +6,15 @@ const firebase = require("firebase");
 export class Login extends Component {
     render() {
         const {classes} = this.props;
-        return (
-            <Container className={classes.container}>
-                <CssBaseline />
+        return (   
                 <Paper className = {classes.paper}>
+                     <CssBaseline />
                     <Typography variant ="h3">
-                        Sign in
+                        Login
                     </Typography>
                     <form className = {classes.form}>
                         <TextField
+                         variant="outlined"
                          margin="normal"
                          fullWidth
                          name="email"
@@ -23,6 +23,7 @@ export class Login extends Component {
                          autoComplete="email"/>
 
                         <TextField
+                        variant="outlined"
                         margin="normal"
                         fullWidth
                         name="password"
@@ -40,14 +41,15 @@ export class Login extends Component {
                         fullWidth
                         variant="contained"
                         color="primary"
+                        className={classes.submit}
             
                         >
-                            Sign In
+                            Login
                         </Button>
-                        <a href="#" variant="body2">Don't have an account? Sign Up</a>
+                        <a href="#" variant="body2"className={classes.signup}>Don't have an account? Sign Up</a>
                     </form>
                 </Paper>
-            </Container>
+            
         )
     }
 }

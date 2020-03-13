@@ -13,8 +13,13 @@ code {
 }
 #routing-container
 {
-  height:80vh;
+  height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
+}
+#root
+{
+  height:100vh;
+  width:100vw;
 }
