@@ -9,6 +9,9 @@ const style = theme => ({
         
         
       },
+      header: {
+        textAlign:'center'
+      },
       form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
@@ -22,6 +25,9 @@ const style = theme => ({
           display:'block',
           textAlign:'center',
          
+      },
+      error:{
+        textAlign:'center'
       }
 });
   

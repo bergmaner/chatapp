@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import {Route,BrowserRouter as Router} from 'react-router-dom';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import Dashboard from './Components/Dashboard';
 
 const firebase = require("firebase");
 require ("firebase/firestore");
@@ -25,6 +26,7 @@ const routing =
     <div id= "routing-container">
         <Route path='/login' component={Login}></Route>
         <Route path='/signup' component={Signup}></Route>
+        <Route path='/dashboard' component={Dashboard}></Route>
     </div>
 </Router>
 
