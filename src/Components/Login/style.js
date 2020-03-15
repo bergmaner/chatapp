@@ -21,6 +21,9 @@ const style = theme => ({
       signup:{
           display:'block',
           textAlign:'center'
+      },
+      error:{
+        textAlign:'center'
       }
 });
   

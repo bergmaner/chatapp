@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CssBaseline,withStyles,Container,Paper,Typography,TextField,FormControlLabel,Checkbox,Button,Box,Grid} from '@material-ui/core';
+import { CssBaseline,withStyles,Paper,Typography,TextField,Button} from '@material-ui/core';
 import style from './style';
 const firebase = require("firebase");
 
@@ -47,8 +47,7 @@ export class Signup extends Component {
         console.log(authErr.message);
         this.setState({signupError:authErr.message});
     }
-    )
-    }
+    )}
     onChange = (type,e) => {
         switch(type)
         {
