@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import { CssBaseline,withStyles,Paper,Typography,TextField,Button} from '@material-ui/core';
 import style from './style';
 const firebase = require("firebase");
@@ -126,7 +127,8 @@ export class Signup extends Component {
                this.state.signupError?<Typography color="secondary" className={classes.error}>{this.state.signupError}</Typography>:null
             }
            
-           <a href="#" variant="body2"className={classes.login}>Do you have an account? Sign in</a>
+           <Link to='/login' variant="body2"className={classes.login}>Do you have an account? Sign in</Link>
+           
        </Paper>
         )
     }

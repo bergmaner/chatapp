@@ -6,6 +6,7 @@ import {Route,BrowserRouter as Router} from 'react-router-dom';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Dashboard from './Components/Dashboard';
+import ParticleComponent from './Components/ParticleComponent';
 
 const firebase = require("firebase");
 require ("firebase/firestore");
@@ -24,6 +25,7 @@ const routing =
 (
 <Router>
     <div id= "routing-container">
+         <ParticleComponent/>
         <Route path='/login' component={Login}></Route>
         <Route path='/signup' component={Signup}></Route>
         <Route path='/dashboard' component={Dashboard}></Route>
@@ -31,6 +33,7 @@ const routing =
 </Router>
 
 );
+
 ReactDOM.render(routing, document.getElementById('root'));
 
 
