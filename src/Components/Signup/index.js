@@ -49,20 +49,8 @@ export class Signup extends Component {
         this.setState({signupError:authErr.message});
     }
     )}
-    onChange = (type,e) => {
-        switch(type)
-        {
-            case 'email':
-                this.setState({email : e.target.value});
-                break;
-            case 'password':
-                this.setState({password : e.target.value});
-                break;
-            case 'passwordConfirmation':
-                this.setState({passwordConfirmation : e.target.value});
-                break;
-        }
-        
+    onChange = (e) => {
+        this.setState({[e.target.name]: e.target.value});
     }
    
 
@@ -77,7 +65,7 @@ export class Signup extends Component {
            <form onSubmit = {(e) => this.submitSignup(e)} className = {classes.form}>
                 
                <TextField
-                onChange = {(e) => this.onChange("email",e)}
+                onChange = {(e) => this.onChange(e)}
                 variant="outlined"
                 required
                 margin="normal"
@@ -88,7 +76,7 @@ export class Signup extends Component {
                 autoComplete="email"/>
 
                <TextField
-               onChange = {(e) => this.onChange("password",e)}
+               onChange = {(e) => this.onChange(e)}
                variant="outlined"
                required
                margin="normal"
@@ -101,7 +89,7 @@ export class Signup extends Component {
                />
               
               <TextField
-              onChange = {(e) => this.onChange("passwordConfirmation",e)}
+              onChange = {(e) => this.onChange(e)}
                variant="outlined"
                required
                margin="normal"

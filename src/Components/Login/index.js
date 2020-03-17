@@ -32,17 +32,8 @@ export class Login extends Component {
         })
         console.log("SUBMITTING",this.state);
     }
-    onChange = (type,e) =>{
-        switch(type)
-        {
-            case'email':
-            this.setState({email:e.target.value});
-            break;
-
-            case'password':
-            this.setState({password:e.target.value});
-            break;
-        }
+    onChange = (e) =>{
+        this.setState({[e.target.name]: e.target.value});
     }
     render() {
        
@@ -56,7 +47,7 @@ export class Login extends Component {
                     </Typography>
                     <form onSubmit={(e) => this.submitLogin(e)} className = {classes.form}>
                         <TextField
-                         onChange={(e) => this.onChange("email",e)}
+                         onChange={(e) => this.onChange(e)}
                          variant="outlined"
                          margin="normal"
                          fullWidth
@@ -66,7 +57,7 @@ export class Login extends Component {
                          autoComplete="email"/>
 
                         <TextField
-                        onChange={(e) => this.onChange("password",e)}
+                        onChange={(e) => this.onChange(e)}
                         variant="outlined"
                         margin="normal"
                         fullWidth
