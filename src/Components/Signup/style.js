@@ -5,7 +5,11 @@ const style = theme => ({
         flexDirection: 'column',
         alignItems: 'center',
         width:'40vw',
-        minWidth:'400px'
+        minWidth:'400px',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
         
         
       },

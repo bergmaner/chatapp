@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-import { CssBaseline,withStyles,Paper,Typography,TextField,FormControlLabel,Checkbox,Button} from '@material-ui/core';
+import { CssBaseline,Container,withStyles,Paper,Typography,TextField,FormControlLabel,Checkbox,Button} from '@material-ui/core';
 import style from './style';
 
 const firebase = require("firebase");
@@ -97,7 +97,6 @@ export class Login extends Component {
                         <Link to="/signup" variant="body2" className={classes.signup}>Don't have an account? Sign Up</Link>
                       
                 </Paper>
-            
         )
     }
 }

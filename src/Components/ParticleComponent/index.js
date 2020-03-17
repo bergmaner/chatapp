@@ -14,9 +14,8 @@ export class ParticleComponent extends Component {
         alpha: [0.6, 0],
         scale: [.1, 0.4],
         position: "all",
-        color: ["#483CC4"],
+        color: ["#0000FF"],
         cross: "dead",
-        // emitter: "follow",
         random: 15
       };
     
