@@ -12,7 +12,7 @@ export class ChatList extends Component {
           return(
             <div className={classes.root}>
                 <Button 
-                  variant="outlined" 
+                  variant="contained" 
                   fullWidth 
                   color='primary' 
                   onClick={this.newChat} 

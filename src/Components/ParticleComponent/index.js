@@ -38,7 +38,7 @@ export class ParticleComponent extends Component {
 
         return (
             <React.Fragment>
-         <ParticlesBg type="custom" config={config} bg={true} />
+         <ParticlesBg  type="custom" config={config} bg={true} />
             </React.Fragment>
         )
     }
