@@ -22,7 +22,8 @@ export class Dashboard extends Component {
         firebase.auth().signOut();
     }
     selectChat = (chatIndex) =>{
-        console.log(`Selected Chat: ${chatIndex}`);
+       
+        this.setState({selectedChat:chatIndex});
     }
 
     chatBtnClicked = () =>this.setState({chatVisible:true,selectedChat:null});
@@ -57,7 +58,7 @@ export class Dashboard extends Component {
                 chats={this.state.chats}
                 chatIndex={this.state.selectedChat}/>
                 {
-                    this.state.chatVisible ?  <ChatDisplay></ChatDisplay> : null
+                    this.state.chatVisible ?  <ChatDisplay user = {this.state.email} chat = {this.state.chats[this.state.selectedChat]}></ChatDisplay> : null
                 }
                
                  <Button 

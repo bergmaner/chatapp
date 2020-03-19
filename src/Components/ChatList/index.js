@@ -27,7 +27,7 @@ export class ChatList extends Component {
                         <div key={index}>
                           <ListItem onClick={() => this.selectChat(index)} 
                             className={classes.listItem} 
-                            selected={this.props.selectedChatIndex === index} 
+                            selected={this.props.chatIndex === index} 
                             alignItems="flex-start">
                             <ListItemAvatar>
                               <Avatar >{chat.users.filter(user => user !== this.props.userEmail)[0].split('')[0]}</Avatar>
