@@ -27,10 +27,10 @@ const style = theme => ({
       {
         gridArea:'messagesList',
         boxSizing:'border-box',
-        height:'calc(100vh - 50px)',
+        height:'calc(100vh - 75px)',
         display:'flex',
         flexDirection:'column-reverse',
-        padding:'0 20px'
+        padding:'20px'
       },
       
       userMsg: {

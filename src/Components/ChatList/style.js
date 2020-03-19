@@ -8,7 +8,11 @@ const style = theme => ({
     boxShadow: '0px 0px 2px black'
   },
   listItem: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: '#eee'
+    }
+
   },
   newChatBtn: {
     borderRadius: '0px'

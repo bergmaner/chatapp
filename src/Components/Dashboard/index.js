@@ -3,6 +3,7 @@ import ChatList from '../ChatList';
 import {Button,withStyles} from '@material-ui/core';
 import style from './style';
 import ChatDisplay from '../ChatDisplay';
+import ChatTextBox from '../ChatTextBox';
 const firebase = require("firebase");
 
 export class Dashboard extends Component {
@@ -60,7 +61,12 @@ export class Dashboard extends Component {
                 {
                     this.state.chatVisible ?  <ChatDisplay user = {this.state.email} chat = {this.state.chats[this.state.selectedChat]}></ChatDisplay> : null
                 }
-               
+                {
+                    this.state.selectedChat !== null && this.state.chatVisible !== false ?
+                    <ChatTextBox></ChatTextBox>
+                    :null
+                }
+              
                  <Button 
                   variant="contained" 
                   fullWidth 
