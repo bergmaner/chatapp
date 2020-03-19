@@ -22,10 +22,15 @@ export class Dashboard extends Component {
     signOut = (e) =>{
         firebase.auth().signOut();
     }
-    selectChat = (chatIndex) =>{
-       
-        this.setState({selectedChat:chatIndex});
+    selectChat = (chatIndex) => this.setState({selectedChat:chatIndex});
+
+    submitMessage = (msg) =>{
+        const chatKey = this.createChatKey(this.state.chats[this.state.selectedChat].users
+            .filter(user => user !== this.state.email)[0]);
+            console.log(chatKey);
     }
+
+    createChatKey = (friend) => [this.state.email,friend].sort().join(':');
 
     chatBtnClicked = () =>this.setState({chatVisible:true,selectedChat:null});
 
@@ -63,7 +68,7 @@ export class Dashboard extends Component {
                 }
                 {
                     this.state.selectedChat !== null && this.state.chatVisible !== false ?
-                    <ChatTextBox></ChatTextBox>
+                    <ChatTextBox submitMessage ={this.submitMessage}></ChatTextBox>
                     :null
                 }
               

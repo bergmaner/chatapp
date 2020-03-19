@@ -13,9 +13,14 @@ export class ChatTextBox extends Component {
         };
     }
     onKeyUp = (e) => e.keyCode === 13 ? this.submitMessage() :this.setState({text: e.target.value});
+    isValid = (text) => text && text.replace(/\s/g,'').length;
     submitMessage = (e) => 
     {
-       console.log('Submitting');
+        if(this.isValid(this.state.text))
+        {
+            this.props.submitMessage(this.state.text);
+            document.querySelector('#chatBox').value = '';
+        }
     }
     render() {
         const {classes} = this.props;
