@@ -27,7 +27,18 @@ export class Dashboard extends Component {
     submitMessage = (msg) =>{
         const chatKey = this.createChatKey(this.state.chats[this.state.selectedChat].users
             .filter(user => user !== this.state.email)[0]);
-            console.log(chatKey);
+            firebase
+                .firestore()
+                .collection('chats')
+                .doc(chatKey)
+                .update({
+                    messages: firebase.firestore.FieldValue.arrayUnion({
+                        message: msg,
+                        sender: this.state.email,
+                        timestamp: Date.now()
+                    }),
+                    read:false
+                });
     }
 
     createChatKey = (friend) => [this.state.email,friend].sort().join(':');
@@ -45,6 +56,7 @@ export class Dashboard extends Component {
                 .where('users','array-contains',user.email)
                 .onSnapshot(async res =>{
                     const chats = res.docs.map(doc => doc.data());
+                    chats.forEach(chat => chat.messages.reverse())
                     await this.setState({email:user.email,chats:chats});
                     console.log(this.state);
                 });

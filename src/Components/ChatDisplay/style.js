@@ -1,12 +1,11 @@
 const style = theme => ({
     content: {
         height: '100vh',
-        overflow: 'auto',
         marginLeft: '300px',
         boxSizing: 'border-box',
-        overflowY: 'scroll',
         width: 'calc(100% - 300px)',
-        padding:'25px'
+        padding:'25px 0px',
+        paddingTop:'50px'
       },
       header:
       {
@@ -17,20 +16,24 @@ const style = theme => ({
       top:'0',
       textAlign:'center',
       color:'#fff',
-      padding:'6px 16px',
+      padding:'12px 16px',
       width: 'calc(100% - 300px)',
       borderRadius: '0px',
-      height: '35px',
+      height: '50px',
       backgroundColor: '#3F51B5'
       },
       messagesList:
       {
         gridArea:'messagesList',
         boxSizing:'border-box',
-        height:'calc(100vh - 75px)',
+        height:'calc(100% - 25px)',
         display:'flex',
         flexDirection:'column-reverse',
-        padding:'20px'
+        padding:'25px',
+        margin:' 0px',
+        width: '100%',
+        overflow: 'auto',
+        overflowY: 'scroll'
       },
       
       userMsg: {

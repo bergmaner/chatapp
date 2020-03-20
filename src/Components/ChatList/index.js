@@ -25,7 +25,9 @@ export class ChatList extends Component {
                     this.props.chats.map((chat, index) => {
                       return (
                         <div key={index}>
-                          <ListItem onClick={() => this.selectChat(index)} 
+                          <ListItem 
+                            button
+                            onClick={() => this.selectChat(index)} 
                             className={classes.listItem} 
                             selected={this.props.chatIndex === index} 
                             alignItems="flex-start">
@@ -38,7 +40,7 @@ export class ChatList extends Component {
                                 <React.Fragment>
                                   <Typography component='span'
                                     color='textPrimary'>
-                                      {chat.messages[chat.messages.length - 1].message.substring(0, 30) + ' ...'}
+                                      {chat.messages[0].message.substring(0, 30) + ' ...'}
                                   </Typography>
                                 </React.Fragment>
                               }/> 

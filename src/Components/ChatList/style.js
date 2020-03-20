@@ -12,10 +12,12 @@ const style = theme => ({
     '&:hover': {
       backgroundColor: '#eee'
     }
+    
 
   },
   newChatBtn: {
-    borderRadius: '0px'
+    borderRadius: '0px',
+    height:'50px'
   },
   unreadMessage: {
     color: 'red',
