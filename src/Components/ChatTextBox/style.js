@@ -1,6 +1,9 @@
 const style = theme => ({
 
     sendButton: {
+        position: 'absolute',
+        right:'0px',
+        top:'0px',
         color: 'blue',
         cursor: 'pointer',
         '&:hover': {
@@ -14,7 +17,7 @@ const style = theme => ({
         left: '315px',
         boxSizing: 'border-box',
         overflow: 'auto',
-        width: 'calc(100% - 300px - 50px)'
+        width: 'calc(100% - 300px - 20px)'
       },
     
       chatBox: {

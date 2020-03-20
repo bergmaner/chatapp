@@ -7,6 +7,15 @@ const style = theme => ({
         padding:'25px 0px',
         paddingTop:'50px'
       },
+      back : {
+        position:'absolute',
+        right:'1vw',
+        top:'12px',
+        cursor: 'pointer',
+        '&:hover': {
+          color: 'gray'
+        }
+        },
       header:
       {
       boxShadow: '0px 0px 2px black',

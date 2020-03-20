@@ -22,7 +22,7 @@ const style = theme => ({
   unreadMessage: {
     color: 'red',
     position: 'absolute',
-    top: '0',
+    top: '15px',
     right: '5px'
   }
 });

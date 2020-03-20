@@ -13,7 +13,7 @@ export class Dashboard extends Component {
         super();
         this.state ={
             selectedChat:null,
-            chatVisible:true,
+            chatVisible:false,
             email:null,
             chats :[]
 
@@ -22,7 +22,12 @@ export class Dashboard extends Component {
     signOut = (e) =>{
         firebase.auth().signOut();
     }
-    selectChat = (chatIndex) => this.setState({selectedChat:chatIndex});
+    selectChat = async (chatIndex) =>
+    {
+       await this.setState({selectedChat:chatIndex, chatVisible:true});
+       this.messageRead();
+        
+    } 
 
     submitMessage = (msg) =>{
         const chatKey = this.createChatKey(this.state.chats[this.state.selectedChat].users
@@ -45,8 +50,32 @@ export class Dashboard extends Component {
 
     chatBtnClicked = () =>this.setState({chatVisible:true,selectedChat:null});
 
+    hideChat = () =>this.setState({chatVisible:true,selectedChat:null});
+
+    messageRead = () => 
+    {
+        const chatKey = this.createChatKey(this.state.chats[this.state.selectedChat].users.filter(user => user !== this.state.email)[0])
+        if(this.lastMessageNotWriteSender(this.state.selectedChat))
+        {
+            firebase
+            .firestore()
+            .collection('chats')
+            .doc(chatKey)
+            .update({
+                read:true
+            })
+        }
+        else
+        {
+            console.log('User is sender');
+        }
+    }
+
+    lastMessageNotWriteSender = (chatIndex) => this.state.chats[chatIndex].messages[0].sender !== this.state.email;
+
     componentDidMount=()=>
     {
+        
         firebase.auth().onAuthStateChanged(async user =>{
             if(!user)this.props.history.push('/login');
             else{
@@ -74,9 +103,10 @@ export class Dashboard extends Component {
                 selectChat={this.selectChat} 
                 chatBtnClicked={this.chatBtnClicked}
                 chats={this.state.chats}
-                chatIndex={this.state.selectedChat}/>
+                chatIndex={this.state.selectedChat}
+                />
                 {
-                    this.state.chatVisible ?  <ChatDisplay user = {this.state.email} chat = {this.state.chats[this.state.selectedChat]}></ChatDisplay> : null
+                    this.state.chatVisible ?  <ChatDisplay hideChat={this.hideChat} user = {this.state.email} chat = {this.state.chats[this.state.selectedChat]}></ChatDisplay> : null
                 }
                 {
                     this.state.selectedChat !== null && this.state.chatVisible !== false ?

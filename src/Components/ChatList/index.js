@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CssBaseline,List,ListItem, ListItemText,withStyles,Paper,Typography,TextField,FormControlLabel,ListItemIcon,Divider,Avatar,ListItemAvatar,Checkbox,Button} from '@material-ui/core';
-
+import {NotificationImportant} from '@material-ui/icons';
 import style from './style';
 
 export class ChatList extends Component {
@@ -45,6 +45,9 @@ export class ChatList extends Component {
                                 </React.Fragment>
                               }/> 
                              </ListItem>
+                             {
+                               chat.read === false && !this.userIsSender(chat) ?<NotificationImportant className = {classes.unreadMessage}></NotificationImportant> :null
+                             }
                              <Divider/>
                          </div>)})
                     }
@@ -53,7 +56,7 @@ export class ChatList extends Component {
           );
         
       }
-      userIsSender = (chat) => chat.messages[chat.messages.length - 1].sender === this.props.userEmail;
+      userIsSender = (chat) => chat.messages[0].sender === this.props.userEmail;
       newChat = () => this.props.chatBtnClicked();
       selectChat = (index) => this.props.selectChat(index);
     }
