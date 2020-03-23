@@ -4,6 +4,8 @@ import {Button,withStyles} from '@material-ui/core';
 import style from './style';
 import ChatDisplay from '../ChatDisplay';
 import ChatTextBox from '../ChatTextBox';
+import NewChat from '../NewChat';
+
 const firebase = require("firebase");
 
 export class Dashboard extends Component {
@@ -14,6 +16,7 @@ export class Dashboard extends Component {
         this.state ={
             selectedChat:null,
             chatVisible:false,
+            newChatVisible:false,
             email:null,
             chats :[]
 
@@ -24,7 +27,8 @@ export class Dashboard extends Component {
     }
     selectChat = async (chatIndex) =>
     {
-       await this.setState({selectedChat:chatIndex, chatVisible:true});
+       await this.setState({selectedChat:chatIndex, chatVisible:true,newChatVisible:false});
+       console.log(this.state);
        this.messageRead();
         
     } 
@@ -48,9 +52,9 @@ export class Dashboard extends Component {
 
     createChatKey = (friend) => [this.state.email,friend].sort().join(':');
 
-    chatBtnClicked = () =>this.setState({chatVisible:true,selectedChat:null});
+    chatBtnClicked = () =>this.setState({newChatVisible:true,selectedChat:null});
 
-    hideChat = () =>this.setState({chatVisible:true,selectedChat:null});
+    hideChat = () =>this.setState({selectedChat:null});
 
     messageRead = () => 
     {
@@ -113,7 +117,9 @@ export class Dashboard extends Component {
                     <ChatTextBox submitMessage ={this.submitMessage}></ChatTextBox>
                     :null
                 }
-              
+              {
+                   this.state.newChatVisible ? <NewChat></NewChat> :null
+              }
                  <Button 
                   variant="contained" 
                   fullWidth 
