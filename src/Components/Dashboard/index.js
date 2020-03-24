@@ -75,6 +75,36 @@ export class Dashboard extends Component {
         }
     }
 
+    goToChat = async (chatKey,msg) => 
+    {
+        const usersInChat = chatKey.split(':');
+        const chat = this.state.chats.find(chat => usersInChat.every(user => chat.users.includes(user) ));
+        this.setState({chatVisible : true});
+        await this.selectChat(this.state.chats.indexOf(chat));
+        this.submitMessage(msg);
+        console.log("goToChat");
+    }
+
+    newChat = async (chatObj) =>
+    {
+        const chatKey = this.createChatKey(chatObj.sendTo);
+        await firebase
+        .firestore()
+        .collection('chats')
+        .doc(chatKey)
+        .set({
+            read : false,
+            users : [this.state.email, chatObj.sendTo],
+            messages : [{
+                message : chatObj.message,
+                sender : this.state.email
+            }] 
+        })
+        this.setState({newChatVisible : false,chatVisible : true});
+        this.selectChat(this.state.chats.length - 1);
+        console.log('newChat');
+    }
+
     lastMessageNotWriteSender = (chatIndex) => this.state.chats[chatIndex].messages[0].sender !== this.state.email;
 
     componentDidMount=()=>
@@ -118,7 +148,7 @@ export class Dashboard extends Component {
                     :null
                 }
               {
-                   this.state.newChatVisible ? <NewChat></NewChat> :null
+                   this.state.newChatVisible ? <NewChat goToChat = {this.goToChat} newChat = {this.newChat}></NewChat> :null
               }
                  <Button 
                   variant="contained" 

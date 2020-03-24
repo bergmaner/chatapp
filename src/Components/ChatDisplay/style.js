@@ -13,7 +13,7 @@ const style = theme => ({
         top:'12px',
         cursor: 'pointer',
         '&:hover': {
-          color: 'gray'
+          transform : 'scale(1.2,1.2)'
         }
         },
       header:

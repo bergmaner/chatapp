@@ -6,7 +6,80 @@ const firebase = require("firebase");
 
 export class NewChat extends Component {
     
+    constructor ()
+    {
+        super();
+        this.state = 
+        {
+            friendemail:'',
+            message:''
+        };
+    }
+
+    onChange = (e) =>
+    {
+        this.setState({[e.target.name]: e.target.value});
+    }
+
+    userExists = async () =>
+    {
+        
+        const users = await firebase 
+        .firestore()
+        .collection('users')
+        .get();
+    const exists = users.docs
+        .map(doc => doc.data().email)
+        .includes(this.state.friendemail);
+        this.setState({serverError : !exists})
+        return exists;  
+    }
+
+    chatExists = async () =>
+    {
+        const chatKey = this.createChatKey();
+        console.log(`chatKey: ${chatKey}`)
+        const chat = await 
+        firebase
+      .firestore()
+      .collection('chats')
+      .doc(chatKey)
+      .get();
+    console.log(chat.exists);
+    return chat.exists;
+
+    }
    
+    sendMessage = async (e) =>
+    {
+        
+        e.preventDefault();
+        const userExists = await this.userExists();
+
+        if(userExists)
+        {
+           
+            const chatExists = await this.chatExists();
+            chatExists ? this.goToChat() : this.createChat();
+        }
+       
+    
+    }
+
+    createChat = () => 
+    {
+        this.props.newChat({
+            sendTo : this.state.friendemail,
+            message : this.state.message
+        });
+    }
+
+    goToChat = () => this.props.goToChat(this.createChatKey(),this.state.message);
+
+    createChatKey = () =>
+    {
+        return [firebase.auth().currentUser.email,this.state.friendemail].sort().join(':');
+    }
 
     render() {
 
@@ -16,7 +89,7 @@ export class NewChat extends Component {
             
                 <Paper className = {classes.paper} >
                     <Typography component = "h1" variant = "h5">Send a message!</Typography>
-                    <form className={classes.form} >
+                    <form className={classes.form} onSubmit = { (e) => this.sendMessage(e)} >
             
             <TextField
                onChange = {(e) => this.onChange(e)}
@@ -41,6 +114,13 @@ export class NewChat extends Component {
            
             <Button fullWidth variant='contained' className = {classes.submit} color='primary' type='submit'>Send</Button>
           </form>
+          {
+            this.state.serverError ? 
+            <Typography component='h5' variant='h6'color="secondary">
+              User doesn't exist
+            </Typography> :
+            null
+          }
                 </Paper>
             
         )
